@@ -1,4 +1,12 @@
-
+/**
+ * Creates the McpServer, registers all tools, and starts the
+ * StdioServerTransport. The server connects to the MCP client
+ * via stdin/stdout (JSON-RPC protocol).
+ *
+ * IMPORTANT: Never write to stdout from the tools — it is
+ * reserved exclusively for the MCP protocol. Use stderr
+ * for any diagnostic logs.
+ */
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";

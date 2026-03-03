@@ -11,7 +11,7 @@ cp .env.example .env
 
 # Edit .env with your credentials
 SONARQUBE_URL=https://your-server.example.com
-SONARQUBE_TOKEN=your-user-token
+SONARQUBE_TOKEN=your-token
 ```
 
 ## Installation
