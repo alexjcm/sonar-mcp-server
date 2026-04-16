@@ -12,18 +12,18 @@ import { getSonarqubeClient } from "../sonarqube-client.ts";
 import { handleMcpError, createMcpSuccessResponse } from "./utils.ts";
 import { z } from "zod";
 
-type Branch = {
+interface Branch {
   name: string;
   isMain?: boolean;
   type?: string;
   status?: { qualityGateStatus?: string };
   analysisDate?: string;
   excludedFromPurge?: boolean;
-};
+}
 
-type ProjectBranchesResponse = {
+interface ProjectBranchesResponse {
   branches: Branch[];
-};
+}
 
 export function registerProjectBranchesTools(server: McpServer): void {
   server.registerTool(

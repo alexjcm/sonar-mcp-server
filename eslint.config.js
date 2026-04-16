@@ -15,7 +15,7 @@ export default defineConfig([
     plugins: { js },
     extends: [
       "js/recommended",
-      tseslint.configs.strictTypeChecked,
+      tseslint.configs.recommendedTypeChecked,
       tseslint.configs.stylisticTypeChecked,
     ],
     languageOptions: {

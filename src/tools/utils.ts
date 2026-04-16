@@ -12,10 +12,10 @@ export function buildQueryParams(
   const params: Record<string, string> = {};
   for (const [k, v] of Object.entries(parsedArgs)) {
     if (v === undefined) continue;
-    const finalKey = keyMapping?.[k] || k;
+    const finalKey = keyMapping?.[k] ?? k;
     if (typeof v === "boolean") {
       params[finalKey] = v ? "true" : "false";
-    } else {
+    } else if (typeof v === "string" || typeof v === "number") {
       params[finalKey] = String(v);
     }
   }
@@ -30,7 +30,9 @@ export function handleMcpError(err: unknown) {
     let parsedBody: unknown = undefined;
     try {
       parsedBody = JSON.parse(err.body);
-    } catch {}
+    } catch {
+      // JSON.parse failed — fall back to raw body string
+    }
     const pretty = parsedBody ? JSON.stringify(parsedBody, null, 2) : err.body;
     return {
       content: [{ type: "text" as const, text: `${err.message}\n${pretty}`.trim() }],

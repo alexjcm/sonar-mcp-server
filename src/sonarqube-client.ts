@@ -70,8 +70,6 @@ export class SonarqubeApiError extends Error {
 let _client: SonarqubeClient | null = null;
 
 export function getSonarqubeClient(): SonarqubeClient {
-  if (!_client) {
-    _client = new SonarqubeClient(config.sonarqubeUrl, config.sonarqubeToken);
-  }
+  _client ??= new SonarqubeClient(config.sonarqubeUrl, config.sonarqubeToken);
   return _client;
 }
